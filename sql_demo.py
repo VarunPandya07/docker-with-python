@@ -6,7 +6,7 @@ from mysql.connector.abstracts import MySQLConnectionAbstract
 def create_connection() -> PooledMySQLConnection | MySQLConnectionAbstract:
     try:
         return mysql.connector.connect(
-            host="172.17.0.2",  
+            host="mysqldb",  
             user="root",
             password="root",
             database="mydata"
@@ -31,6 +31,9 @@ def insert_name(connection: PooledMySQLConnection | MySQLConnectionAbstract, nam
     cursor.execute("INSERT INTO names (name) VALUES (%s)", (name,))
     connection.commit()
     cursor.close()
+
+    with open("server.txt", 'a') as file:
+        file.write(name+"\n")
 
 def fetch_all_names(connection: PooledMySQLConnection | MySQLConnectionAbstract):
     cursor = connection.cursor()
