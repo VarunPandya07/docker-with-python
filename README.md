@@ -10,6 +10,13 @@ then run mysql image so data base is ready to use
 
 ```
 docker run -d --env MYSQL_ROOT_PASSWORD="password" --env MYSQL_DATABASE="database_name" --name <set_cotnainer_name> <image_name/image_ID>
+
+then inspect the mysql container and check the networking part and take ipaddress and put them in code conection function of 'host'
+
+```
+docker inpsect <container_id/container_name>
+```
+
 ```
 ### PYTHON
 
@@ -24,7 +31,7 @@ docker build .
 run python image
 
 ```
-docker run -it -rm <image_name/image_ID>
+docker run -it --rm <image_name/image_ID>
 ```
 
 ### DOCKER COMPOSE 
